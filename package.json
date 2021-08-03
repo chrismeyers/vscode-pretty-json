@@ -10,14 +10,14 @@
 		"Other"
 	],
 	"activationEvents": [
-        "onCommand:vscode-pretty-json.helloWorld"
+        "onCommand:vscode-pretty-json.prettyjson"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "vscode-pretty-json.helloWorld",
-				"title": "Hello World"
+				"command": "vscode-pretty-json.prettyjson",
+				"title": "Pretty JSON"
 			}
 		]
 	},
