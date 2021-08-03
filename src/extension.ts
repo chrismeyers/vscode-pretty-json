@@ -12,14 +12,13 @@ export function activate(context: vscode.ExtensionContext) {
     'vscode-pretty-json.prettyjson',
     async () => {
       if (vscode.window.activeTextEditor) {
-        vscode.languages
-          .setTextDocumentLanguage(
-            vscode.window.activeTextEditor.document,
-            'json'
-          )
-          .then((document) => {
-            vscode.commands.executeCommand('editor.action.formatDocument');
-          });
+        await vscode.languages.setTextDocumentLanguage(
+          vscode.window.activeTextEditor.document,
+          'json'
+        );
+        setTimeout(() => {
+          vscode.commands.executeCommand('editor.action.formatDocument');
+        }, 500);
       } else {
         vscode.window.showErrorMessage('Pretty JSON: No active document!');
       }
