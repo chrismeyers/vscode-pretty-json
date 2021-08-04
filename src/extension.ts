@@ -24,14 +24,18 @@ export function activate(context: vscode.ExtensionContext) {
         const text = editor.document.getText(textRange);
 
         editor.edit((editorBuilder) => {
-          let indentation = editor.options.insertSpaces
+          const indentation = editor.options.insertSpaces
             ? editor.options.tabSize ?? 2
             : '\t';
 
-          editorBuilder.replace(
-            textRange,
-            JSON.stringify(JSON.parse(text), null, indentation)
-          );
+          try {
+            editorBuilder.replace(
+              textRange,
+              JSON.stringify(JSON.parse(text), null, indentation)
+            );
+          } catch (error) {
+            vscode.window.showErrorMessage('Pretty JSON: Invalid JSON');
+          }
         });
       } else {
         vscode.window.showErrorMessage('Pretty JSON: No active document');
