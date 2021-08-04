@@ -11,16 +11,26 @@ export function activate(context: vscode.ExtensionContext) {
   let disposable = vscode.commands.registerCommand(
     'vscode-pretty-json.prettyjson',
     async () => {
-      if (vscode.window.activeTextEditor) {
-        await vscode.languages.setTextDocumentLanguage(
-          vscode.window.activeTextEditor.document,
-          'json'
+      const editor = vscode.window.activeTextEditor;
+
+      if (editor) {
+        await vscode.languages.setTextDocumentLanguage(editor.document, 'json');
+
+        const textRange = new vscode.Range(
+          editor.document.lineAt(0).range.start,
+          editor.document.lineAt(editor.document.lineCount - 1).range.end
         );
-        setTimeout(() => {
-          vscode.commands.executeCommand('editor.action.formatDocument');
-        }, 500);
+
+        const text = editor.document.getText(textRange);
+
+        editor.edit((editorBuilder) => {
+          editorBuilder.replace(
+            textRange,
+            JSON.stringify(JSON.parse(text), null, 2)
+          );
+        });
       } else {
-        vscode.window.showErrorMessage('Pretty JSON: No active document!');
+        vscode.window.showErrorMessage('Pretty JSON: No active document');
       }
     }
   );
