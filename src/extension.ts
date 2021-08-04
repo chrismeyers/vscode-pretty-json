@@ -27,7 +27,7 @@ export function activate(context: vscode.ExtensionContext) {
 
       const text = editor.document.getText(textRange);
 
-      editor.edit((editorBuilder) => {
+      editor.edit(async (editorBuilder) => {
         const indentation = editor.options.insertSpaces
           ? editor.options.tabSize ?? 2
           : '\t';
@@ -37,6 +37,11 @@ export function activate(context: vscode.ExtensionContext) {
             textRange,
             JSON.stringify(JSON.parse(text), null, indentation)
           );
+
+          const pos0 = editor.document.positionAt(0);
+          await vscode.window.showTextDocument(editor.document, {
+            selection: new vscode.Selection(pos0, pos0),
+          });
         } catch (error) {
           vscode.window.showErrorMessage(`[${COMMAND_TITLE}] ${error}`);
         }
