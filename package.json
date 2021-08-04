@@ -3,6 +3,7 @@
 	"displayName": "vscode-pretty-json",
 	"description": "",
 	"version": "0.0.1",
+	"publisher": "chrismeyers",
 	"engines": {
 		"vscode": "^1.58.0"
 	},
