@@ -38,11 +38,11 @@ export function activate(context: vscode.ExtensionContext) {
             JSON.stringify(JSON.parse(text), null, indentation)
           );
         } catch (error) {
-          vscode.window.showErrorMessage(`${COMMAND_TITLE}: ${error}`);
+          vscode.window.showErrorMessage(`[${COMMAND_TITLE}] ${error}`);
         }
       });
     } else {
-      vscode.window.showErrorMessage(`${COMMAND_TITLE}: No active document`);
+      vscode.window.showErrorMessage(`[${COMMAND_TITLE}] No active document`);
     }
   });
 
