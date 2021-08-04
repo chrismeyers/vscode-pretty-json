@@ -1,7 +1,7 @@
 {
   "name": "vscode-pretty-json",
 	"displayName": "vscode-pretty-json",
-	"description": "",
+	"description": "Visual Studio Code extension that provides a command to format JSON",
 	"version": "0.0.1",
 	"publisher": "chrismeyers",
 	"engines": {
