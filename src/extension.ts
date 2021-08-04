@@ -24,9 +24,13 @@ export function activate(context: vscode.ExtensionContext) {
         const text = editor.document.getText(textRange);
 
         editor.edit((editorBuilder) => {
+          let indentation = editor.options.insertSpaces
+            ? editor.options.tabSize ?? 2
+            : '\t';
+
           editorBuilder.replace(
             textRange,
-            JSON.stringify(JSON.parse(text), null, 2)
+            JSON.stringify(JSON.parse(text), null, indentation)
           );
         });
       } else {
