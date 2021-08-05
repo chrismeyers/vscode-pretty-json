@@ -14,12 +14,11 @@ export function activate(context: vscode.ExtensionContext) {
   // The command has been defined in the package.json file
   // Now provide the implementation of the command with registerCommand
   // The commandId parameter must match the command field in package.json
-  let disposable = vscode.commands.registerCommand(COMMAND, async () => {
+  let disposable = vscode.commands.registerCommand(COMMAND, () => {
     const editor = vscode.window.activeTextEditor;
 
     if (editor) {
-      await vscode.languages.setTextDocumentLanguage(editor.document, 'json');
-
+      // Select all text in current document
       const textRange = new vscode.Range(
         editor.document.lineAt(0).range.start,
         editor.document.lineAt(editor.document.lineCount - 1).range.end
@@ -38,10 +37,16 @@ export function activate(context: vscode.ExtensionContext) {
             JSON.stringify(JSON.parse(text), null, indentation)
           );
 
+          // Reset view to start of document after formatting
           const pos0 = editor.document.positionAt(0);
           await vscode.window.showTextDocument(editor.document, {
             selection: new vscode.Selection(pos0, pos0),
           });
+
+          await vscode.languages.setTextDocumentLanguage(
+            editor.document,
+            'json'
+          );
         } catch (error) {
           vscode.window.showErrorMessage(`[${COMMAND_TITLE}] ${error}`);
         }
