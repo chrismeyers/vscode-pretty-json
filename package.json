@@ -1,7 +1,7 @@
 {
   "name": "vscode-pretty-json",
   "displayName": "vscode-pretty-json",
-  "description": "Visual Studio Code extension that provides a command to format JSON",
+  "description": "Visual Studio Code extension that provides commands to format JSON",
   "version": "1.0.0",
   "repository": {
     "type": "git",
@@ -16,15 +16,16 @@
     "Other"
   ],
   "icon": "images/icon.png",
-  "activationEvents": [
-    "onCommand:vscode-pretty-json.prettyjson"
-  ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "vscode-pretty-json.prettyjson",
-        "title": "Pretty JSON"
+        "command": "vscode-pretty-json.prettify",
+        "title": "Pretty JSON: Prettify"
+      },
+      {
+        "command": "vscode-pretty-json.uglify",
+        "title": "Pretty JSON: Uglify"
       }
     ]
   },
