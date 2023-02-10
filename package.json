@@ -1,7 +1,7 @@
 {
   "name": "vscode-pretty-json",
   "displayName": "vscode-pretty-json",
-  "description": "Visual Studio Code extension that provides a command to format JSON",
+  "description": "Visual Studio Code extension that provides commands to format JSON",
   "version": "1.0.0",
   "repository": {
     "type": "git",
@@ -16,15 +16,16 @@
     "Other"
   ],
   "icon": "images/icon.png",
-  "activationEvents": [
-    "onCommand:vscode-pretty-json.prettyjson"
-  ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "vscode-pretty-json.prettyjson",
-        "title": "Pretty JSON"
+        "command": "vscode-pretty-json.prettify",
+        "title": "Pretty JSON: Prettify"
+      },
+      {
+        "command": "vscode-pretty-json.uglify",
+        "title": "Pretty JSON: Uglify"
       }
     ]
   },
@@ -37,16 +38,16 @@
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
-    "@types/glob": "^7.1.3",
-    "@types/mocha": "^8.2.2",
-    "@types/node": "14.x",
-    "@types/vscode": "^1.58.0",
-    "@typescript-eslint/eslint-plugin": "^4.26.0",
-    "@typescript-eslint/parser": "^4.26.0",
-    "eslint": "^7.27.0",
-    "glob": "^7.1.7",
-    "mocha": "^8.4.0",
-    "typescript": "^4.3.2",
+    "@types/glob": "^8.0.1",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "18.x",
+    "@types/vscode": "^1.75.0",
+    "@typescript-eslint/eslint-plugin": "^5.51.0",
+    "@typescript-eslint/parser": "^5.51.0",
+    "eslint": "^8.33.0",
+    "glob": "^8.1.0",
+    "mocha": "^10.2.0",
+    "typescript": "^4.9.5",
     "vscode-test": "^1.5.2"
   }
 }
