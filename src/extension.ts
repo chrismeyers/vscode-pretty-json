@@ -22,6 +22,7 @@ export function activate(context: vscode.ExtensionContext) {
         const text = editor.document.getText(textRange);
 
         editor.edit(async (editorBuilder) => {
+          const isAlreadyFormatted = editor.document.lineCount > 1;
           const indentation = editor.options.insertSpaces
             ? editor.options.tabSize ?? 2
             : '\t';
@@ -32,11 +33,13 @@ export function activate(context: vscode.ExtensionContext) {
               JSON.stringify(JSON.parse(text), null, indentation)
             );
 
-            // Reset view to start of document after formatting
-            const pos0 = editor.document.positionAt(0);
-            await vscode.window.showTextDocument(editor.document, {
-              selection: new vscode.Selection(pos0, pos0),
-            });
+            if (!isAlreadyFormatted) {
+              // Reset cursor to start of document
+              const pos0 = editor.document.positionAt(0);
+              await vscode.window.showTextDocument(editor.document, {
+                selection: new vscode.Selection(pos0, pos0),
+              });
+            }
 
             await vscode.languages.setTextDocumentLanguage(
               editor.document,
@@ -72,6 +75,12 @@ export function activate(context: vscode.ExtensionContext) {
         editor.edit(async (editorBuilder) => {
           try {
             editorBuilder.replace(textRange, JSON.stringify(JSON.parse(text)));
+
+            // Reset cursor to start of document
+            const pos0 = editor.document.positionAt(0);
+            await vscode.window.showTextDocument(editor.document, {
+              selection: new vscode.Selection(pos0, pos0),
+            });
 
             await vscode.languages.setTextDocumentLanguage(
               editor.document,
