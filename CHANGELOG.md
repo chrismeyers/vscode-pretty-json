@@ -4,6 +4,10 @@ All notable changes to the "vscode-pretty-json" extension will be documented in 
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [v2.2.0]
+
+- Respect json indentation overrides
+
 ## [v2.1.1]
 
 - Clean build artifacts and omit tests from packaged extension
