@@ -9,7 +9,7 @@ const EXTENSION_NAME = 'Pretty JSON';
 export function activate(context: vscode.ExtensionContext) {
   const prettify = vscode.commands.registerCommand(
     'vscode-pretty-json.prettify',
-    () => {
+    async () => {
       const editor = vscode.window.activeTextEditor;
 
       if (editor) {
@@ -20,6 +20,8 @@ export function activate(context: vscode.ExtensionContext) {
         );
 
         const text = editor.document.getText(textRange);
+
+        await vscode.languages.setTextDocumentLanguage(editor.document, 'json');
 
         editor.edit(async (editorBuilder) => {
           const isAlreadyFormatted = editor.document.lineCount > 1;
@@ -40,11 +42,6 @@ export function activate(context: vscode.ExtensionContext) {
                 selection: new vscode.Selection(pos0, pos0),
               });
             }
-
-            await vscode.languages.setTextDocumentLanguage(
-              editor.document,
-              'json'
-            );
           } catch (error) {
             vscode.window.showErrorMessage(`[${EXTENSION_NAME}] ${error}`);
           }
