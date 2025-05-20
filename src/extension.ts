@@ -1,6 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import { parse, stringify } from 'lossless-json';
 
 const EXTENSION_NAME = 'Pretty JSON';
 
@@ -30,10 +31,12 @@ export function activate(context: vscode.ExtensionContext) {
             : '\t';
 
           try {
-            editorBuilder.replace(
-              textRange,
-              JSON.stringify(JSON.parse(text), null, indentation)
-            );
+            const formatted = stringify(parse(text), null, indentation);
+            if (!formatted) {
+              throw new Error('Unable to format text');
+            }
+
+            editorBuilder.replace(textRange, formatted);
 
             if (!isAlreadyFormatted) {
               // Reset cursor to start of document
@@ -71,7 +74,12 @@ export function activate(context: vscode.ExtensionContext) {
 
         editor.edit(async (editorBuilder) => {
           try {
-            editorBuilder.replace(textRange, JSON.stringify(JSON.parse(text)));
+            const formatted = stringify(parse(text));
+            if (!formatted) {
+              throw new Error('Unable to format text');
+            }
+
+            editorBuilder.replace(textRange, formatted);
 
             // Reset cursor to start of document
             const pos0 = editor.document.positionAt(0);
