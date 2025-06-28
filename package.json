@@ -2,7 +2,7 @@
   "name": "vscode-pretty-json",
   "displayName": "vscode-pretty-json",
   "description": "Visual Studio Code extension that provides commands to format JSON",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/chrismeyers/vscode-pretty-json.git"
