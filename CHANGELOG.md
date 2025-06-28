@@ -4,6 +4,11 @@ All notable changes to the "vscode-pretty-json" extension will be documented in 
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [v2.3.1]
+
+- Added demo GIF to README
+- Added note about keybindings to README
+
 ## [v2.3.0]
 
 - Preserve decimals in floats (e.g. `1.0` was previously getting converted to `1`)
