@@ -2,6 +2,8 @@
 
 Visual Studio Code extension that provides commands to format JSON
 
+![Demo](demo.gif)
+
 ## Usage
 
 1. Open a new file and enter some unformatted JSON
