@@ -1,5 +1,7 @@
 # vscode-pretty-json
 
+[Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=chrismeyers.vscode-pretty-json) | [Open VSX Registry](https://open-vsx.org/extension/chrismeyers/vscode-pretty-json)
+
 Visual Studio Code extension that provides commands to format JSON
 
 ![Demo](demo.gif)
