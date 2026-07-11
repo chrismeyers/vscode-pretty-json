@@ -27,7 +27,7 @@ export function activate(context: vscode.ExtensionContext) {
         editor.edit(async (editorBuilder) => {
           const isAlreadyFormatted = editor.document.lineCount > 1;
           const indentation = editor.options.insertSpaces
-            ? editor.options.tabSize ?? 2
+            ? (editor.options.tabSize ?? 2)
             : '\t';
 
           try {
@@ -45,7 +45,7 @@ export function activate(context: vscode.ExtensionContext) {
                 selection: new vscode.Selection(pos0, pos0),
               });
             }
-          } catch (error) {
+          } catch (error: any) {
             vscode.window.showErrorMessage(`[${EXTENSION_NAME}] ${error}`);
           }
         });
@@ -91,7 +91,7 @@ export function activate(context: vscode.ExtensionContext) {
               editor.document,
               'json'
             );
-          } catch (error) {
+          } catch (error: any) {
             vscode.window.showErrorMessage(`[${EXTENSION_NAME}] ${error}`);
           }
         });
