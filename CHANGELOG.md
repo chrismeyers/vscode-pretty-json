@@ -4,6 +4,10 @@ All notable changes to the "vscode-pretty-json" extension will be documented in 
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [v2.3.3]
+
+- Update dependencies
+
 ## [v2.3.2]
 
 - Excluded demo GIF from packaged extension
